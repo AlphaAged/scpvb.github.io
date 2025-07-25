@@ -1,4 +1,3 @@
-html
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -11,10 +10,54 @@ html
         body { font-family: 'Sarabun', sans-serif; }
     </style>
 </head>
-<body class="bg-white text-gray-800 font-sans">
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
 
-    <!-- Landing Page -->
-    <div id="landingPage">
+    <!-- Login Page (หน้าแรกที่เข้าเว็บ) -->
+    <div id="loginPage" class="min-h-screen flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
+            <div class="text-center mb-8">
+                <div class="text-3xl font-bold text-blue-600 mb-4">Lifedashboard</div>
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">เข้าสู่ระบบ</h1>
+                <p class="text-gray-600">กรุณากรอกรหัส 10 หลักของคุณ</p>
+            </div>
+            
+            <form id="loginForm" class="space-y-6">
+                <div>
+                    <label for="userCode" class="block text-sm font-medium text-gray-700 mb-2">รหัสผู้ใช้</label>
+                    <input 
+                        type="text" 
+                        id="userCode" 
+                        maxlength="10"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-center text-lg tracking-wider"
+                        placeholder="กรอกรหัส 10 หลัก"
+                        required
+                    >
+                </div>
+                
+                <button 
+                    type="submit" 
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition duration-200 transform hover:scale-105"
+                >
+                    เข้าสู่ระบบ
+                </button>
+            </form>
+            
+            <div id="errorMessage" class="hidden mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg text-center">
+            </div>
+            
+            <div class="text-center mt-8">
+                <button 
+                    id="reportProblemBtn"
+                    class="text-sm text-blue-600 hover:text-blue-800 underline"
+                >
+                    รายงานปัญหา
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Landing Page (หลังจาก Login แล้ว) -->
+    <div id="landingPage" class="hidden bg-white text-gray-800 font-sans">
         <!-- Navbar -->
         <nav class="flex items-center justify-between p-4 shadow-md">
             <div class="text-xl font-bold text-blue-600">Lifedashboard</div>
@@ -22,7 +65,8 @@ html
                 <a href="#" class="hover:text-blue-600">Home</a>
                 <a href="#" class="hover:text-blue-600">Learn</a>
                 <a href="#" class="hover:text-blue-600">Badges</a>
-                <button id="loginBtn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Log In</button>
+                <button id="profileMenuBtn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Profile</button>
+                <button id="logoutFromLandingBtn" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Logout</button>
             </div>
         </nav>
 
@@ -147,56 +191,6 @@ html
         </footer>
     </div>
 
-    <!-- Login Page -->
-    <div id="loginPage" class="hidden min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-blue-50 to-indigo-100">
-        <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
-            <div class="text-center mb-8">
-                <h1 class="text-3xl font-bold text-gray-800 mb-2">เข้าสู่ระบบ</h1>
-                <p class="text-gray-600">กรุณากรอกรหัส 10 หลักของคุณ</p>
-            </div>
-            
-            <form id="loginForm" class="space-y-6">
-                <div>
-                    <label for="userCode" class="block text-sm font-medium text-gray-700 mb-2">รหัสผู้ใช้</label>
-                    <input 
-                        type="text" 
-                        id="userCode" 
-                        maxlength="10"
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-center text-lg tracking-wider"
-                        placeholder="กรอกรหัส 10 หลัก"
-                        required
-                    >
-                </div>
-                
-                <button 
-                    type="submit" 
-                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition duration-200 transform hover:scale-105"
-                >
-                    เข้าสู่ระบบ
-                </button>
-            </form>
-            
-            <div id="errorMessage" class="hidden mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg text-center">
-            </div>
-            
-            <div class="text-center mt-8">
-                <button 
-                    id="reportProblemBtn"
-                    class="text-sm text-blue-600 hover:text-blue-800 underline"
-                >
-                    รายงานปัญหา
-                </button>
-                <span class="mx-2 text-gray-400">|</span>
-                <button 
-                    id="backToHomeBtn"
-                    class="text-sm text-blue-600 hover:text-blue-800 underline"
-                >
-                    กลับสู่หน้าหลัก
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- Dashboard Page -->
     <div id="dashboardPage" class="hidden min-h-screen bg-gradient-to-br from-green-50 to-emerald-100">
         <!-- Hamburger Menu Button -->
@@ -238,6 +232,15 @@ html
                         >
                             <span class="text-gray-600">👤</span>
                             <span class="text-gray-700">ข้อมูลโปรไฟล์</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button 
+                            id="backToLandingBtn"
+                            class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-100 transition duration-200 flex items-center space-x-3"
+                        >
+                            <span class="text-gray-600">🌐</span>
+                            <span class="text-gray-700">กลับสู่เว็บไซต์</span>
                         </button>
                     </li>
                 </ul>
@@ -340,10 +343,11 @@ html
         const SHEETY_API_URL = 'https://api.sheety.co/f9d461c6cb5cd938dcddc4f9fe9be51a/scpvb/deta';
         
         let userData = [];
+        let currentUser = null;
 
         // Page elements
-        const landingPage = document.getElementById('landingPage');
         const loginPage = document.getElementById('loginPage');
+        const landingPage = document.getElementById('landingPage');
         const dashboardPage = document.getElementById('dashboardPage');
         const reportPage = document.getElementById('reportPage');
         const loginForm = document.getElementById('loginForm');
@@ -474,8 +478,8 @@ html
         }
 
         function showPage(page) {
-            landingPage.classList.add('hidden');
             loginPage.classList.add('hidden');
+            landingPage.classList.add('hidden');
             dashboardPage.classList.add('hidden');
             reportPage.classList.add('hidden');
             page.classList.remove('hidden');
@@ -530,6 +534,7 @@ html
                 const isAdmin = userCode === '0000000000';
                 
                 if (user || isAdmin) {
+                    currentUser = user;
                     const role = getUserRole(userCode);
                     document.getElementById('userRole').textContent = role;
                     document.getElementById('userRoleDisplay').textContent = role;
@@ -548,9 +553,10 @@ html
                         `;
                     }
                     
-                    showPage(dashboardPage);
+                    // หลังจาก login แล้วไปหน้า Landing Page
+                    showPage(landingPage);
                 } else {
-                    showError('ไม่พบรหัسนักศึกษาในระบบ');
+                    showError('ไม่พบรหัสนักศึกษาในระบบ');
                 }
             } catch (error) {
                 console.error('Login error:', error);
@@ -624,12 +630,12 @@ html
         }
 
         // Navigation event listeners
-        document.getElementById('loginBtn').addEventListener('click', () => {
-            showPage(loginPage);
+        document.getElementById('getStartedBtn').addEventListener('click', () => {
+            showPage(dashboardPage);
         });
 
-        document.getElementById('getStartedBtn').addEventListener('click', () => {
-            showPage(loginPage);
+        document.getElementById('profileMenuBtn').addEventListener('click', () => {
+            showPage(dashboardPage);
         });
 
         document.getElementById('reportProblemBtn').addEventListener('click', () => {
@@ -640,14 +646,16 @@ html
             showPage(loginPage);
         });
 
-        document.getElementById('backToHomeBtn').addEventListener('click', () => {
-            document.getElementById('userCode').value = '';
-            showPage(landingPage);
-        });
-
         document.getElementById('logoutBtn').addEventListener('click', () => {
             document.getElementById('userCode').value = '';
-            showPage(landingPage);
+            currentUser = null;
+            showPage(loginPage);
+        });
+
+        document.getElementById('logoutFromLandingBtn').addEventListener('click', () => {
+            document.getElementById('userCode').value = '';
+            currentUser = null;
+            showPage(loginPage);
         });
 
         // Sidebar event listeners
@@ -660,6 +668,10 @@ html
 
         document.getElementById('profileBtn').addEventListener('click', () => {
             showContent(profileContent);
+        });
+
+        document.getElementById('backToLandingBtn').addEventListener('click', () => {
+            showPage(landingPage);
         });
 
         // Auto-format input to numbers only
